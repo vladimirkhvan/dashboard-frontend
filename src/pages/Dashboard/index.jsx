@@ -24,7 +24,7 @@ export const Dashboard = () => {
             const fetchUsers = async () => {
                 try {
                     const token = window.localStorage.getItem('token') || '';
-                    const { data } = await axios.get('http://localhost:8800/users', {
+                    const { data } = await axios.get('http://khvan-vladimir-dashboard.herokuapp.com/users', {
                         headers: { Authorization: `Bearer ${token}` },
                     });
                     if (data.isAuthorized) {
@@ -100,7 +100,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.delete('http://localhost:8800/users', {
+                const { data } = await axios.delete('http://khvan-vladimir-dashboard.herokuapp.com/users', {
                     headers: { Authorization: `Bearer ${token}` },
                     data: { ids },
                 });
@@ -124,7 +124,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('http://localhost:8800/users/block', {
+                const { data } = await axios.put('http://khvan-vladimir-dashboard.herokuapp.com/users/block', {
                     ids,
                 }, {headers: { Authorization: `Bearer ${token}` },});
                 if (data.isAuthorized) {
@@ -151,7 +151,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('http://localhost:8800/users/unblock', {
+                const { data } = await axios.put('http://khvan-vladimir-dashboard.herokuapp.com/users/unblock', {
                     ids,
                 }, {headers: { Authorization: `Bearer ${token}` },});
                 console.log(data);

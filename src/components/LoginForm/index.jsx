@@ -23,7 +23,7 @@ export const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(`http://localhost:8800/users/login`, {
+            const { data } = await axios.post(`http://khvan-vladimir-dashboard.herokuapp.com/users/login`, {
                 email: userInfo.email,
                 password: userInfo.password,
             });
