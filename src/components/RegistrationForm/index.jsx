@@ -26,7 +26,17 @@ export const RegistrationForm = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://khvan-vladimir-dashboard.herokuapp.com/users', userInfo);
+            const response = await axios.post(
+                'https://khvan-vladimir-dashboard.herokuapp.com/users',
+                userInfo,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
             navigate('/login');
         } catch (error) {
             if (error.response.status === 409) {
@@ -49,7 +59,11 @@ export const RegistrationForm = () => {
                         placeholder="Enter name"
                         required
                     />
-                    <img src={clearIcon} alt="clear" onClick={() => clearField('username', setUserInfo)} />
+                    <img
+                        src={clearIcon}
+                        alt="clear"
+                        onClick={() => clearField('username', setUserInfo)}
+                    />
                 </div>
                 <div className={style.email}>
                     <input
@@ -60,7 +74,11 @@ export const RegistrationForm = () => {
                         placeholder="Enter email"
                         required
                     />
-                    <img src={clearIcon} alt="clear" onClick={() => clearField('email', setUserInfo)} />
+                    <img
+                        src={clearIcon}
+                        alt="clear"
+                        onClick={() => clearField('email', setUserInfo)}
+                    />
                 </div>
                 <div className={style.password}>
                     <input
@@ -72,7 +90,11 @@ export const RegistrationForm = () => {
                         autoComplete="current-password"
                         required
                     />
-                    <img src={clearIcon} alt="clear" onClick={() => clearField('password', setUserInfo)} />
+                    <img
+                        src={clearIcon}
+                        alt="clear"
+                        onClick={() => clearField('password', setUserInfo)}
+                    />
                 </div>
                 <div className={style.password}>
                     <input

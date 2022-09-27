@@ -23,16 +23,26 @@ export const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(`https://khvan-vladimir-dashboard.herokuapp.com/users/login`, {
-                email: userInfo.email,
-                password: userInfo.password,
-            });
+            const { data } = await axios.post(
+                `https://khvan-vladimir-dashboard.herokuapp.com/users/login`,
+                {
+                    email: userInfo.email,
+                    password: userInfo.password,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
             window.localStorage.setItem('token', data.token);
             window.localStorage.setItem('id', data.id);
             window.localStorage.setItem('username', data.username);
             navigate('/');
         } catch (error) {
-            setIsLoginError(true)
+            setIsLoginError(true);
             console.log(error);
         }
     };
@@ -50,7 +60,11 @@ export const LoginForm = () => {
                         placeholder="email"
                         required
                     />
-                    <img src={clearIcon} alt="clear" onClick={() => clearField('email', setUserInfo)} />
+                    <img
+                        src={clearIcon}
+                        alt="clear"
+                        onClick={() => clearField('email', setUserInfo)}
+                    />
                 </div>
                 <div>
                     <input
@@ -62,7 +76,11 @@ export const LoginForm = () => {
                         autoComplete="current-password"
                         required
                     />
-                    <img src={clearIcon} alt="clear" onClick={() => clearField('password', setUserInfo)} />
+                    <img
+                        src={clearIcon}
+                        alt="clear"
+                        onClick={() => clearField('password', setUserInfo)}
+                    />
                 </div>
 
                 <p className={`${style.errorMessage} ` + (isLoginError ? '' : `${style.hide}`)}>

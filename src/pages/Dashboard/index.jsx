@@ -24,9 +24,16 @@ export const Dashboard = () => {
             const fetchUsers = async () => {
                 try {
                     const token = window.localStorage.getItem('token') || '';
-                    const { data } = await axios.get('https://khvan-vladimir-dashboard.herokuapp.com/users', {
-                        headers: { Authorization: `Bearer ${token}` },
-                    });
+                    const { data } = await axios.get(
+                        'https://khvan-vladimir-dashboard.herokuapp.com/users',
+                        {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                'Access-Control-Allow-Origin': '*',
+                                'Content-Type': 'application/json',
+                            },
+                        },
+                    );
                     if (data.isAuthorized) {
                         setUsersInfo(data.users);
                     } else {
@@ -100,10 +107,17 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.delete('https://khvan-vladimir-dashboard.herokuapp.com/users', {
-                    headers: { Authorization: `Bearer ${token}` },
-                    data: { ids },
-                });
+                const { data } = await axios.delete(
+                    'https://khvan-vladimir-dashboard.herokuapp.com/users',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json',
+                        },
+                        data: { ids },
+                    },
+                );
                 if (data.isAuthorized) {
                     setUsersInfo((prevUsersInfo) =>
                         prevUsersInfo.filter((userInfo) => !ids.includes(userInfo.id)),
@@ -124,9 +138,19 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('https://khvan-vladimir-dashboard.herokuapp.com/users/block', {
-                    ids,
-                }, {headers: { Authorization: `Bearer ${token}` },});
+                const { data } = await axios.put(
+                    'https://khvan-vladimir-dashboard.herokuapp.com/users/block',
+                    {
+                        ids,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json',
+                        },
+                    },
+                );
                 if (data.isAuthorized) {
                     setUsersInfo((prevUsersInfo) =>
                         prevUsersInfo.map((userInfo) =>
@@ -151,9 +175,19 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('https://khvan-vladimir-dashboard.herokuapp.com/users/unblock', {
-                    ids,
-                }, {headers: { Authorization: `Bearer ${token}` },});
+                const { data } = await axios.put(
+                    'https://khvan-vladimir-dashboard.herokuapp.com/users/unblock',
+                    {
+                        ids,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json',
+                        },
+                    },
+                );
                 console.log(data);
                 if (data.isAuthorized) {
                     setUsersInfo((prevUsersInfo) =>
