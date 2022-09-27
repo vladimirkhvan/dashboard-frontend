@@ -26,7 +26,7 @@ export const RegistrationForm = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('khvan-vladimir-dashboard.herokuapp.com/users', userInfo);
+            const response = await axios.post('https://khvan-vladimir-dashboard.herokuapp.com/users', userInfo);
             navigate('/login');
         } catch (error) {
             if (error.response.status === 409) {

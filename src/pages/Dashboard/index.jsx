@@ -24,7 +24,7 @@ export const Dashboard = () => {
             const fetchUsers = async () => {
                 try {
                     const token = window.localStorage.getItem('token') || '';
-                    const { data } = await axios.get('khvan-vladimir-dashboard.herokuapp.com/users', {
+                    const { data } = await axios.get('https://khvan-vladimir-dashboard.herokuapp.com/users', {
                         headers: { Authorization: `Bearer ${token}` },
                     });
                     if (data.isAuthorized) {
@@ -100,7 +100,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.delete('khvan-vladimir-dashboard.herokuapp.com/users', {
+                const { data } = await axios.delete('https://khvan-vladimir-dashboard.herokuapp.com/users', {
                     headers: { Authorization: `Bearer ${token}` },
                     data: { ids },
                 });
@@ -124,7 +124,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('khvan-vladimir-dashboard.herokuapp.com/users/block', {
+                const { data } = await axios.put('https://khvan-vladimir-dashboard.herokuapp.com/users/block', {
                     ids,
                 }, {headers: { Authorization: `Bearer ${token}` },});
                 if (data.isAuthorized) {
@@ -151,7 +151,7 @@ export const Dashboard = () => {
         if (ids.length > 0) {
             try {
                 const token = window.localStorage.getItem('token') || '';
-                const { data } = await axios.put('khvan-vladimir-dashboard.herokuapp.com/users/unblock', {
+                const { data } = await axios.put('https://khvan-vladimir-dashboard.herokuapp.com/users/unblock', {
                     ids,
                 }, {headers: { Authorization: `Bearer ${token}` },});
                 console.log(data);
